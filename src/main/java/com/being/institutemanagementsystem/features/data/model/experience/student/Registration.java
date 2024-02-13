@@ -1,5 +1,6 @@
 package com.being.institutemanagementsystem.features.data.model.experience.student;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -7,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Registration {
     private  int id;
     private String name;

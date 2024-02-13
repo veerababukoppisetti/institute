@@ -1,7 +1,5 @@
 package com.being.institutemanagementsystem.features.web.services;
 
-import com.being.institutemanagementsystem.common.Errors;
-import com.being.institutemanagementsystem.common.ResourceNotFoundException;
 import com.being.institutemanagementsystem.features.data.model.experience.student.CreateRegistrationRequest;
 import com.being.institutemanagementsystem.features.data.model.experience.student.Registration;
 import com.being.institutemanagementsystem.features.data.model.experience.student.UpdateRegistrationRequest;
@@ -81,7 +79,6 @@ public class RegistrationService {
         // 1. Validate the dependencies.
         final RegistrationEntity matchingInstance = registrationRepository.findByInstituteId(instituteId);
         //.orElseThrow(() -> ResourceNotFoundException.instance(Errors.RESOURCE_NOT_FOUND,instituteId));
-         try{
         if (matchingInstance == null) {
                 throw new ServiceException("Unable to find institute with id " + instituteId);
             }
@@ -95,7 +92,5 @@ public class RegistrationService {
                     .instituteName(matchingInstance.getInstituteName())
                     .location(matchingInstance.getLocation()).build();
 
-    } catch (ServiceException e) {
-             throw new ServiceException(e.getMessage());
-         }
+
     }}
