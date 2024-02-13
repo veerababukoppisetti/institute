@@ -1,12 +1,13 @@
 package com.being.institutemanagementsystem.common;
 
-import lombok.*;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ConfigurationProperties(prefix = "com.being.institutemanagementsystem.common")
 public class ApiDocumentationSettings {
     /** Reference to the title. */
     private String title;
@@ -65,7 +66,7 @@ public class ApiDocumentationSettings {
         private String scheme = "bearer";
 
         /** Security scheme type - HTTP, OAuth2, etc. */
-        private String type = "HTTPS";
+        private String type = "HTTP";
 
         /** Bearer format. */
         private String bearerFormat = "JWT";
