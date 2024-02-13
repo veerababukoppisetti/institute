@@ -13,7 +13,7 @@ spring:
   # Database related details.
   datasource:
     username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:postgres}
+    password: ${DB_PASSWORD:}
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:hrms}
     driver-class-name: org.postgresql.Driver
     hikari:
@@ -29,21 +29,3 @@ spring:
       properties:
         hibernate:
           default_schema: veera
-
-  # API documentation settings.
-  # ---------------------------
-  api:
-    documentation:
-      title: inno-mlops
-      license: GNU Lesser General Public License
-      licenseUrl: https://www.gnu.org/licenses/lgpl-3.0.en.html
-      version: 1.0.0-SNAPSHOT
-      contact:
-        name: Admin
-        email: Admin
-      base-package: "com.being.institutemanagementsystem"
-      security-schema:
-        name: bearerAuth
-        scheme: bearer
-        type: HTTPS
-        bearerFormat: JWT
