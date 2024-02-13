@@ -1,24 +1,45 @@
 package com.being.institutemanagementsystem;
 
-import com.being.institutemanagementsystem.features.data.model.experience.student.Registration;
-import com.being.institutemanagementsystem.features.data.model.persistence.RegistrationEntity;
+import com.being.institutemanagementsystem.features.data.model.experience.student.CreateRegistrationRequest;
+import com.being.institutemanagementsystem.features.data.repository.RegistrationRepository;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.*;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class InstituteManagementSystemApplicationTests {
-	@Test
-	void contextLoads() {
+//	@Test
+//	void contextLoads() {
+//	}
+
+ private  final RegistrationRepository registrationRepository;
+	private static RestTemplate restTemplate;
+
+	InstituteManagementSystemApplicationTests(RegistrationRepository registrationRepository) {
+		this.registrationRepository = registrationRepository;
+	}
+
+
+	@BeforeAll
+	public static void init() {
+		restTemplate = new RestTemplate();
+	}
+	 String  url ="https://localhost:7777/institute-management-service/registration";
+
+	@ParameterizedTest
+	@MethodSource("testAddProduct")
+	public  void testAddProduct() {
+
+
+		CreateRegistrationRequest request = new CreateRegistrationRequest("veera", "java","Qspider","1234567","veera@gmail.com","hyderabad");
+		CreateRegistrationRequest response = restTemplate.postForObject(url, request, CreateRegistrationRequest.class);
+		assertEquals("veera", response.getName());
+		assertEquals(1, registrationRepository.findAll().size());
 	}
 }

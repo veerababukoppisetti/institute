@@ -96,8 +96,8 @@ public class RegistrationApi {
 
     @Operation(
             method = "findByInstitute",
-            summary = "Find an existing DataSet.",
-            description = "This API is used to find an existing findByInstitute in the system.",
+            summary = "Find an existing Institute.",
+            description = "This API is used to find an existing Institute in the system.",
             tags = {RegistrationApi.API_TAG},
             security = {
                     @SecurityRequirement(
@@ -110,7 +110,7 @@ public class RegistrationApi {
                     @ApiResponse(
                             responseCode = "200",
                             description =
-                                    "Successfully retrieved the details of an existing findByInstitute in the system.",
+                                    "Successfully retrieved the details of an existing Institute in the system.",
                             content = @Content),
                     @ApiResponse(
                             responseCode = "403",

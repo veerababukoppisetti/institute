@@ -38,7 +38,7 @@ import org.springframework.stereotype.Component;
 )
 public class inmsServiceConfiguration {
     private final UserDetailsService userDetailsService;
-    private static final String LOGIN_ENDPOINT = "/auth/login";
+    private static final String LOGOUT_ENDPOINT = "logout";
 
     public inmsServiceConfiguration(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
@@ -64,7 +64,7 @@ public class inmsServiceConfiguration {
                                    "/swagger-ui/**",
                                    "/actuator/**")
                                 .permitAll()
-                           .anyRequest()
+                           .antMatchers( HttpMethod.POST,"/institute-management-service/registration")
                                 .authenticated())
                    .exceptionHandling(customizer -> customizer.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                    .authenticationProvider(authenticationProvider())

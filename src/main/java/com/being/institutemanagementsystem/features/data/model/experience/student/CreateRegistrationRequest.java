@@ -20,4 +20,7 @@ public class CreateRegistrationRequest {
     private  String contact;
     @NotBlank(message = "user.location.not.blank.message")
     private  String location;
+
+    public CreateRegistrationRequest(String veera, String java, String qspider, String s, String s1, String hyderabad) {
+    }
 }
